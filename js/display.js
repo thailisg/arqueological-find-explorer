@@ -8,12 +8,13 @@ export function displayData(items) {
         div.classList.add("card");
 
         div.innerHTML = `
-      <h3>${item.title}</h3>
-      <p>${item.description || "No description"}</p>
-      <p><strong>Source:</strong> ${item.source.name}</p>
-      <p><strong>Date:</strong> ${item.publishedAt}</p>
-      <img src="${item.urlToImage || 'https://via.placeholder.com/200'}" width="200">
-    `;
+            <h3>${item.title || "No title"}</h3>
+            <p>${item.description || "No description"}</p>
+            <p><small>${item.author || "Unknown author"}</small></p>
+  
+            ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
+            ${item.image ? `<img src="${item.image}" alt="${item.title || "No title"}">` : ""}
+        `;
 
         container.appendChild(div);
     });
