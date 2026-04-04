@@ -1,6 +1,6 @@
 import { getNews } from "./apis.js";
 import { displayData, displayHeroImages } from "./display.js";
-import { loadHeaderFooter } from "../js/utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 import { getImage } from "./apis.js";
 
 loadHeaderFooter();
@@ -19,4 +19,3 @@ async function init() {
 }
 
 init();
-initHero();
