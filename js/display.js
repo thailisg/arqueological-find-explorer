@@ -13,7 +13,7 @@ export function displayData(items) {
             <p><small>${item.author || "Unknown author"}</small></p>
   
             ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
-            ${item.image ? `<img src="${item.image}" alt="${item.title || "No title"}">` : ""}
+            ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" alt="${item.title || "No title"}">` : ""}
         `;
 
         container.appendChild(div);
