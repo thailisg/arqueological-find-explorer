@@ -1,6 +1,6 @@
 
-export function displayData(items) {
-    const container = document.querySelector(".news-section");
+export function displayData(items, selector) {
+    const container = document.querySelector(selector);
     container.innerHTML = "";
 
     items.forEach(item => {
@@ -11,7 +11,9 @@ export function displayData(items) {
             <h3>${item.title || "No title"}</h3>
             <p>${item.description || "No description"}</p>
             <p><small>${item.author || "Unknown author"}</small></p>
-  
+
+            <button class="fav-btn">Add to Favorites</button>
+
             ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
             ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" alt="${item.title || "No title"}">` : ""}
         `;
@@ -35,5 +37,22 @@ export function displayHeroImages(items) {
 
         a.appendChild(img);
         container.appendChild(a);
+    });
+}
+
+export function displayGallery(photos) {
+    const container = document.querySelector(".gallery-container");
+    container.innerHTML = "";
+
+    photos.forEach(photo => {
+        const div = document.createElement("div");
+        div.classList.add("gallery-card");
+
+        div.innerHTML = `
+            <img src="${photo.src.medium}" alt="${photo.photographer}">
+            <p>Photo by ${photo.photographer}</p>
+        `;
+
+        container.appendChild(div);
     });
 }

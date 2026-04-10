@@ -13,6 +13,52 @@
 
 <body>
     <header class="divider" id="main-header"></header>
+
+    <main>
+        <!-- filter section -->
+        <section class="filters">
+
+            <h2>Filter News</h2>
+
+            <!-- filter by letter -->
+            <div class="filter-group">
+                <label for="letterFilter">Search by letter:</label>
+                <input type="text" id="letterFilter" maxlength="1" placeholder="A-Z">
+            </div>
+
+            <!-- sort by date -->
+            <div class="filter-group">
+                <label for="sortDate">Sort by date:</label>
+                <select id="sortDate">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+
+            <!-- region filter, placeholder for now -->
+            <div class="filter-group">
+                <label for="regionFilter">Region:</label>
+                <input type="text" id="regionFilter" placeholder="e.g. Peru, Egypt">
+            </div>
+
+        </section>
+
+        <!-- featured -->
+        <section class="featured">
+            <h2>Featured Discoveries</h2>
+            <div class="featured-container"></div>
+        </section>
+
+        <!-- news list -->
+        <section class="news-section"></section>
+
+        <!-- favorites -->
+        <section class="favorites">
+            <h2>Favorites</h2>
+            <div class="favorites-container"></div>
+        </section>
+
+    </main>
     <footer id="main-footer"></footer>
 </body>
 

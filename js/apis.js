@@ -1,22 +1,40 @@
 //News API function to fetch news articles related to archaeology
 
 export async function getNews() {
-    const url = "https://api.currentsapi.services/v1/search?keywords=archaeology&apiKey=slpmyNEQmmUuluUcYcD2xuEEitxEpOzagBDL64f5BKndZsOl";
+    const url = "https://api.currentsapi.services/v1/latest-news?apiKey=W8KoIqgEhRFIIyJt-XoMOuGvZWCY2RBUL6ViEQUz-2JR4AWP";
 
     try {
         const response = await fetch(url);
         const data = await response.json();
 
-        console.log(data);
+        const articles = data.news ?? [];
 
-        return data.news ?? [];
+        const keywords = [
+            "archaeology",
+            "arqueology",
+            "ancient",
+            "ruins",
+            "excavation",
+            "history",
+            "civilization"
+        ];
+
+        const filtered = articles.filter(article => {
+            const text = `${article.title} ${article.description}`.toLowerCase();
+            return keywords.some(word => text.includes(word));
+        });
+
+        if (filtered.length > 0) {
+            return filtered;
+        }
+
+        return articles;
+
     } catch (error) {
-        console.error("Error fetching news from Currents API:", error);
+        console.error("Error fetching news:", error);
+        return [];
     }
-
-    console.log("Currents API function executed");
 }
-
 
 //Pexels API function to fetch images related to archaeology
 export async function getImage(query) {
