@@ -10,7 +10,7 @@ export function displayData(items) {
         div.innerHTML = `
             <h3>${item.title || "No title"}</h3>
             <p>${item.description || "No description"}</p>
-            <p><small>${item.source?.name || "Unknown source"}</small></p>
+            <p><small>${item.author || "Unknown author"}</small></p>
   
             ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
             ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" alt="${item.title || "No title"}">` : ""}
