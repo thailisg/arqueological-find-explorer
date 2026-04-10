@@ -1,20 +1,18 @@
 //News API function to fetch news articles related to archaeology
 
 export async function getNews() {
-    const url = "https://api.currentsapi.services/v1/search?keywords=archaeology&apiKey=slpmyNEQmmUuluUcYcD2xuEEitxEpOzagBDL64f5BKndZsOl";
+    const apiKey = "ee4fd15b6d43311e362624620210adfc";
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+    const query = "archaeology OR prehistoric";
 
-        console.log(data);
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=10&apikey=${apiKey}`;
 
-        return data.news ?? [];
-    } catch (error) {
-        console.error("Error fetching news from Currents API:", error);
-    }
+    const response = await fetch(url);
+    const data = await response.json();
 
-    console.log("Currents API function executed");
+    console.log(data);
+
+    return data.articles ?? [];
 }
 
 

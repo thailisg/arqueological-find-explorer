@@ -11,6 +11,7 @@ async function initHero() {
 }
 
 async function init() {
+
     await initHero();
     const articles = await getNews();
     console.log(articles);
