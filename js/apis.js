@@ -38,7 +38,7 @@ export async function getNews() {
 
 //Pexels API function to fetch images related to archaeology
 export async function getImage(query) {
-    const url = `https://api.pexels.com/v1/search?query=${query}&per_page=10`;
+    const url = `https://api.pexels.com/v1/search?query=${query}&per_page=30`;
 
     const options = {
         headers: {

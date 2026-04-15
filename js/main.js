@@ -3,8 +3,14 @@ import { displayData, displayHeroImages } from "./display.js";
 import { loadHeaderFooter } from "./utils.mjs";
 import { getImage } from "./apis.js";
 import { addFavorite } from "./favorites.js";
+import { loadFacts, initFactsSystem } from "./facts.js";
 
 loadHeaderFooter();
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadFacts();
+    initFactsSystem();
+});
 
 async function initHero() {
     const photos = await getImage("archaeology");

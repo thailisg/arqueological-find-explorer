@@ -1,5 +1,6 @@
+/*======== General Rules ========*/
 :root {
-    --color-background: #F4EBD0;
+    --color-background: #dfdbcb;
     /* Light Sand */
     --color-title: #A67B5B;
     /* Earth/Brown */
@@ -11,44 +12,595 @@
     /* Soft Cream */
 }
 
-/*======== Test for collage ========*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Brygada 1918", serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.5;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/*======== Header Mobile ========*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.name-page {
+    font-size: 1rem;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--color-accent);
+}
+
+.menu-toggle {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.nav-menu {
+    display: none;
+    gap: 1rem;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+
+    background-color: var(--color-card-background);
+}
+
+.nav-menu.active {
+    display: flex;
+    margin: 1rem;
+    background-color: var(--color-accent);
+}
+
+.nav-menu li a {
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-menu li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-accent);
+
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/*========================= Header Desktop =========================*/
+
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: 100%;
+        border-radius: 0;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+}
+
+/*========================= Footer Mobile ========*/
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--color-title);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/*========================= Index.html =======================*/
+
+/*======== Collage ========*/
+
+.hero {
+    display: flex;
+    flex-direction: column;
+}
 
 .hero-collage {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    height: clamp(200px, 40vw, 300px);
+    overflow: hidden;
 }
 
 .hero-collage img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 4px;
+}
+
+.hero-content {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--color-card-background);
+}
+
+.hero-content a {
+    display: inline-block;
+    background-color: var(--color-button);
+    padding: .5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.hero-content a:hover {
+    transform: scale(1.05);
+}
+
+/*======== Collage Desktop ========*/
+
+@media (min-width: 768px) {
+    .hero-collage {
+        grid-template-columns: repeat(3, 1fr);
+        height: 30vh;
+    }
+}
+
+/*======== To manage sections: news-section and maps-section========*/
+
+.container-sections {
+    display: grid;
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+/*======== News Section in index ========*/
+
+.news-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-accent);
+}
+
+.card {
+    background-color: var(--color-card-background);
+    padding: 1rem;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.fav-btn,
+.card a {
+    background-color: var(--color-button);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.2s;
 }
 
-.hero-collage img:hover {
-    transform: scale(1.1);
+.card a {
+    text-align: center;
+    padding: 0.3rem;
 }
 
-/*======== Test for gallery ========*/
+.news1,
+.news2 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/*======== News Section Desktop ========*/
+
+@media (min-width: 768px) {
+
+    .container-sections {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+
+    .news-section {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    #news-index {
+        height: 35vh;
+        border-radius: 12px;
+    }
+
+    .news1,
+    .news2 {
+        overflow-y: auto;
+        padding-right: 0.5rem;
+        scrollbar-width: thin;
+    }
+
+    .maps-section {
+        height: 35vh;
+    }
+}
+
+/*========================= Gallery =========================*/
 
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+
+}
+
+.gallery-card {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
 }
 
 .gallery-card img {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 
 .gallery-card img:hover {
     transform: scale(1.05);
+}
+
+/* ========================= Favorite Page ========================= */
+
+.favorites-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.favorites-container .card {
+    background-color: var(--color-card-background);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+    max-width: 320px;
+    width: 100%;
+}
+
+.empty {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 2rem;
+}
+
+.favorites-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.favorites-hero {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+/* ========= Favorite Page Desktop ========== */
+
+@media (min-width: 768px) {
+    .favorites-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-content: center;
+    }
+}
+
+/* ========================= News Page ======================== */
+.main-news {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.filters {
+    order: 1;
+}
+
+.featured {
+    order: 2;
+}
+
+.news-page {
+    order: 3;
+}
+
+.favorites {
+    order: 4;
+}
+
+/* ========= Filters ========== */
+.filters {
+    background: var(--color-card-background);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.filters-title {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.filters-content {
+    display: none;
+    margin-top: 1rem;
+}
+
+.filters.open .filters-content {
+    display: grid;
+    gap: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.filters input,
+.filters select {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.filters input:hover,
+.filters select:hover {
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ========= Featured ========== */
+.featured {
+    background: var(--color-accent);
+    border-radius: 12px;
+    padding: 1rem;
+    color: var(--color-text-light);
+}
+
+.featured h2 {
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+.featured-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ========= News ========== */
+.news-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    height: auto;
+    overflow: visible;
+}
+
+@media (min-width: 1024px) {
+    .main-news {
+        grid-template-columns: 250px 1fr 300px;
+        gap: 2rem;
+        align-items: start;
+        padding: 2rem;
+    }
+
+    .filters {
+        order: 1;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .news-page {
+        order: 2;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .featured {
+        order: 3;
+        top: 2rem;
+    }
+
+    .filters-content {
+        display: block;
+    }
+
+    .filters-title {
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+/* ========================= Contact ======================== */
+
+#contact-form {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+#contact-form fieldset {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--color-card-background);
+}
+
+#contact-form legend {
+    font-weight: bold;
+    color: var(--color-title);
+    padding: 0 0.5rem;
+}
+
+#contact-form label {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+}
+
+#contact-form input,
+#contact-form select,
+#contact-form textarea {
+    width: 90%;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: white;
+}
+
+#contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#contact-form input[type="submit"] {
+    background: var(--color-button);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#contact-form input[type="submit"]:hover {
+    transform: scale(1.02);
+}
+
+.h2-contact {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+
+    #contact-form {
+        max-width: 700px;
+        margin: 2rem auto;
+    }
+
+    #contact-form fieldset {
+        padding: 1.2rem;
+    }
+
+    #contact-form input[type="submit"] {
+        align-self: center;
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* ================== Facts =================*/
+
+.fact-popup {
+    position: absolute;
+    background-color: var(--color-card-background);
+    color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    max-width: 250px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fact-popup.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.fact-popup strong {
+    display: block;
+    color: var(--color-accent);
+    margin-bottom: 5px;
 }

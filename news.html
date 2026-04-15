@@ -14,31 +14,36 @@
 <body>
     <header class="divider" id="main-header"></header>
 
-    <main>
+    <main class="main-news">
         <!-- filter section -->
         <section class="filters">
 
-            <h2>Filter News</h2>
+            <h2 class="filters-title">Filter News</h2>
 
-            <!-- filter by letter -->
-            <div class="filter-group">
-                <label for="letterFilter">Search by letter:</label>
-                <input type="text" id="letterFilter" maxlength="1" placeholder="A-Z">
-            </div>
+            <div class="filters-content">
+                <!-- filter by letter -->
+                <div class="filter-group">
+                    <label for="letterFilter">Search by letter:</label>
+                    <input type="text" id="letterFilter" maxlength="1" placeholder="A-Z">
+                </div>
 
-            <!-- sort by date -->
-            <div class="filter-group">
-                <label for="sortDate">Sort by date:</label>
-                <select id="sortDate">
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                </select>
-            </div>
+                <div class="fact-zone" data-fact>.</div>
+                <!-- sort by date -->
+                <div class="filter-group">
+                    <label for="sortDate">Sort by date:</label>
+                    <select id="sortDate">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                </div>
 
-            <!-- region filter, placeholder for now -->
-            <div class="filter-group">
-                <label for="regionFilter">Region:</label>
-                <input type="text" id="regionFilter" placeholder="e.g. Peru, Egypt">
+                <div class="fact-zone" data-fact>.</div>
+                <!-- region filter, placeholder for now -->
+                <div class="filter-group">
+                    <label for="regionFilter">Region:</label>
+                    <input type="text" id="regionFilter" placeholder="e.g. Peru, Egypt">
+                </div>
+
             </div>
 
         </section>
@@ -50,13 +55,7 @@
         </section>
 
         <!-- news list -->
-        <section class="news-section"></section>
-
-        <!-- favorites -->
-        <section class="favorites">
-            <h2>Favorites</h2>
-            <div class="favorites-container"></div>
-        </section>
+        <section class="news-section news-page"></section>
 
     </main>
     <footer id="main-footer"></footer>

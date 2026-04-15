@@ -1,25 +1,38 @@
 
 export function displayData(items, selector) {
     const container = document.querySelector(selector);
-    container.innerHTML = "";
+    container.innerHTML = "<p class='loading'>Loading news...</p>";
 
-    items.forEach(item => {
-        const div = document.createElement("div");
-        div.classList.add("card");
+    setTimeout(() => {
+        container.innerHTML = "";
 
-        div.innerHTML = `
-            <h3>${item.title || "No title"}</h3>
-            <p>${item.description || "No description"}</p>
-            <p><small>${item.author || "Unknown author"}</small></p>
+        items.forEach(item => {
+            const div = document.createElement("div");
+            div.classList.add("card");
 
-            <button class="fav-btn">Add to Favorites</button>
+            div.innerHTML = `
+                <h3>${item.title || "No title"}</h3>
+                <p>${item.description || "No description"}</p>
+                <p><small>${item.author || "Unknown author"}</small></p>
 
-            ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
-            ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" alt="${item.title || "No title"}">` : ""}
-        `;
+                <button class="fav-btn" data-title="${item.title}">Add to Favorites</button>
 
-        container.appendChild(div);
-    });
+                ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
+
+                ${item.image ? `<img 
+                    src="${item.image.replace(/^http:\/\//i, "https://")}" 
+                    alt="${item.title || "No title"}"
+                    loading="lazy"
+                    width="300"
+                    height="300"
+                    onerror="this.src='images/fallback-image.webp'"
+                >` : ""}
+            `;
+
+            container.appendChild(div);
+        });
+
+    }, 300);
 }
 
 export function displayHeroImages(items) {
@@ -32,7 +45,7 @@ export function displayHeroImages(items) {
         a.target = "_blank";
 
         const img = document.createElement("img");
-        img.src = photo.src.medium;
+        img.src = photo.src.small;
         img.alt = photo.photographer || "Archaeology Image";
 
         a.appendChild(img);
@@ -49,7 +62,7 @@ export function displayGallery(photos) {
         div.classList.add("gallery-card");
 
         div.innerHTML = `
-            <img src="${photo.src.medium}" alt="${photo.photographer}">
+            <img src="${photo.src.small}" alt="${photo.photographer}">
             <p>Photo by ${photo.photographer}</p>
         `;
 

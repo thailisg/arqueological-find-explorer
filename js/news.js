@@ -2,8 +2,14 @@ import { getNews } from "./apis.js";
 import { displayData } from "./display.js";
 import { loadHeaderFooter } from "./utils.mjs";
 import { addFavorite } from "./favorites.js";
+import { loadFacts, initFactsSystem } from "./facts.js";
 
 loadHeaderFooter();
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadFacts();
+    initFactsSystem();
+});
 
 let allNews = [];
 let filteredNews = [];
@@ -32,10 +38,21 @@ initNews();
 function renderNews() {
     displayData(filteredNews, ".news-section");
 
-    document.querySelectorAll(".fav-btn").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-            addFavorite(filteredNews[index]);
-        });
+    const container = document.querySelector(".news-section");
+
+    container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".fav-btn");
+        if (!btn) return;
+
+        const card = btn.closest(".card");
+
+        const title = card.querySelector("h3")?.textContent;
+
+        const article = filteredNews.find(a => a.title === title);
+
+        if (article) {
+            addFavorite(article);
+        }
     });
 }
 
@@ -43,7 +60,9 @@ function renderFeatured() {
     const container = document.querySelector(".featured-container");
     container.innerHTML = "";
 
-    const featured = allNews.slice(0, 5);
+    const featured = [...allNews]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
 
     featured.forEach(item => {
         const div = document.createElement("div");
@@ -95,6 +114,13 @@ function initFilters() {
     const letterInput = document.querySelector("#letterFilter");
     const regionInput = document.querySelector("#regionFilter");
     const sortSelect = document.querySelector("#sortDate");
+
+    const filtersBox = document.querySelector(".filters");
+    const title = document.querySelector(".filters-title");
+
+    title.addEventListener("click", () => {
+        filtersBox.classList.toggle("open");
+    });
 
     //letter filter
     letterInput.addEventListener("input", (e) => {

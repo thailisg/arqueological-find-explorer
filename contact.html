@@ -7,11 +7,70 @@
     <meta author="Thailis Gonzalez">
     <meta name="description" content="A website to access knowledge about our ancestors and their culture">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/contact.js" type="module"></script>
     <title>Contact Us</title>
 </head>
 
 <body>
+    <header class="divider" id="main-header"></header>
+    <main>
+        <h2 class="h2-contact">Contact Us</h2>
+        <form action="confirmation-page.html" method="get" id="contact-form">
 
+            <!-- Identity -->
+            <fieldset>
+                <legend>About You</legend>
+
+                <label>
+                    First Name:
+                    <input type="text" name="firstName" required autocomplete="given-name"
+                        placeholder="Your first name">
+                </label>
+
+                <label>
+                    Last Name:
+                    <input type="text" name="lastName" required autocomplete="family-name" placeholder="Your last name">
+                </label>
+            </fieldset>
+
+            <!-- Contact -->
+            <fieldset>
+                <legend>Contact Details</legend>
+
+                <label>
+                    Email:
+                    <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+                </label>
+            </fieldset>
+
+            <!-- Message -->
+            <fieldset>
+                <legend>Share a Discovery</legend>
+
+                <label>
+                    Type of Message:
+                    <select name="messageType" required>
+                        <option value="">--Select an option--</option>
+                        <option value="question">Question about an artifact</option>
+                        <option value="suggestion">Suggestion for the site</option>
+                        <option value="discovery">New archaeological discovery</option>
+                    </select>
+                </label>
+
+                <label>
+                    Your Message:
+                    <textarea name="message" required
+                        placeholder="Tell us about an artifact, site, or idea..."></textarea>
+                </label>
+            </fieldset>
+
+            <!-- hidden metadata -->
+            <input type="hidden" name="timestamp" id="timestamp">
+
+            <input type="submit" value="Send discovery">
+        </form>
+    </main>
+    <footer id="main-footer"></footer>
 </body>
 
 </html>

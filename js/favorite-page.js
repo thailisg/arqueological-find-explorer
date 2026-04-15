@@ -1,11 +1,22 @@
 import { loadHeaderFooter } from "./utils.mjs";
+import { loadFacts, initFactsSystem } from "./facts.js";
 
 loadHeaderFooter();
 
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadFacts();
+    initFactsSystem();
+});
 const FAVORITES_KEY = "favorites";
 
 function getFavorites() {
     return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+}
+
+function removeFavorite(title) {
+    let favorites = getFavorites();
+    favorites = favorites.filter(item => item.title !== title);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 }
 
 function renderFavorites() {
@@ -16,7 +27,7 @@ function renderFavorites() {
 
     if (favorites.length === 0) {
         container.innerHTML = `
-            <p class="empty">No favorites yet 🥲</p>
+            <p class="empty">No favorites yet D:</p>
         `;
         return;
     }
@@ -30,11 +41,21 @@ function renderFavorites() {
             <p>${item.description || "No description"}</p>
             
             ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
-            ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" alt="${item.title || "No title"}">` : ""}
+            ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" loading="lazy" alt="${item.title || "No title"}">` : ""}
+
+            <button class="remove-btn">Remove</button>
         `;
+
+        const removeBtn = div.querySelector(".remove-btn");
+
+        removeBtn.addEventListener("click", () => {
+            removeFavorite(item.title);
+            renderFavorites();
+        });
 
         container.appendChild(div);
     });
+
 }
 
 renderFavorites();
