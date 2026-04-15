@@ -41,7 +41,14 @@ function renderFavorites() {
             <p>${item.description || "No description"}</p>
             
             ${item.url ? `<a href="${item.url}" target="_blank">Read more</a>` : ""}
-            ${item.image ? `<img src="${item.image.replace(/^http:\/\//i, "https://")}" loading="lazy" alt="${item.title || "No title"}">` : ""}
+            ${item.image ? `<img 
+                    src="${item.image.replace(/^http:\/\//i, "https://")}" 
+                    alt="${item.title || "No title"}"
+                    loading="lazy"
+                    width="300"
+                    height="300"
+                    onerror="this.src='images/fallback-image.webp'"
+                >` : ""}
 
             <button class="remove-btn">Remove</button>
         `;
